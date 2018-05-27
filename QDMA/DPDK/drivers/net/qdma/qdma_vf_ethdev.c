@@ -253,8 +253,10 @@ static int qdma_pf_bye(struct rte_eth_dev *dev)
 	PMD_DRV_LOG(INFO, "VF-%d(DEVFN) received BYE message from PF",
 							qdma_dev->pf);
 #endif
-	_rte_eth_dev_callback_process(dev, RTE_ETH_EVENT_VF_MBOX, NULL, NULL);
-	return 0;
+	//_rte_eth_dev_callback_process(dev, RTE_ETH_EVENT_VF_MBOX, NULL, NULL);
+        // Req NULL By Jacky.Tao 
+        _rte_eth_dev_callback_process(dev, RTE_ETH_EVENT_VF_MBOX, NULL); 	
+        return 0;
 }
 
 static void qdma_read_pf_msg(struct rte_eth_dev *dev)
